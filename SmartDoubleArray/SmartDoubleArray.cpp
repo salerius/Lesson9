@@ -11,7 +11,7 @@ namespace MyArray
         capacity = 8;
         size = 0;
         chiefPointer = new int[capacity];
-        tempArray = new int[capacity];
+        int* tempArray = new int[capacity];
     }
 
     SmartDoubleArray::~SmartDoubleArray()
@@ -68,7 +68,7 @@ namespace MyArray
 		{
 			tempArray[i] = chiefPointer[i-1];
 		}
-		delete[] chiefPointer;
+//		delete[] chiefPointer;
 		chiefPointer = new int[capacity];
 
 		for (int i = 0; i <= size; i++)

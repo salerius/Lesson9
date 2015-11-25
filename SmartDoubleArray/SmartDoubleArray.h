@@ -25,6 +25,7 @@ namespace MyArray
 
     private:
         int getValueOfIndex(int index) const;
+		void expandingArray(int capacity, int* &tempArray);
         bool indexCheck(int index) const;
         int *chiefPointer;
         int size;
