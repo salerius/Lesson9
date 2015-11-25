@@ -23,11 +23,6 @@ namespace MyArray
     }
 
 
-	//void SmartDoubleArray::expandingArray(int capacity, int* &tempArray)
-	//{
-	//	//capacity *= 2;
-	//	tempArray = new int[capacity];
-	//}
 
     //add element to the end
     void SmartDoubleArray::add(int value)
