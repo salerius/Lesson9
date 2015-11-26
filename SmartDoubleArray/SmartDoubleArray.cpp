@@ -51,8 +51,6 @@ namespace MyArray
         if (!indexCheck(index))
             return;
         int* tempArray = nullptr;
-        bool needCleanUp = false;
-        
         if (size == capacity)
         {
             capacity *= 2;
