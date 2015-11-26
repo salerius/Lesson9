@@ -30,8 +30,7 @@ namespace MyArray
         int *chiefPointer;
         int size;
         int capacity;
-        int* tempArray;
-
+    
     };
 
 }

@@ -11,87 +11,90 @@ namespace MyArray
         capacity = 8;
         size = 0;
         chiefPointer = new int[capacity];
-        int* tempArray = new int[capacity];
-    }
+     }
 
     SmartDoubleArray::~SmartDoubleArray()
     {
         if (chiefPointer != nullptr)
             delete chiefPointer;
-		if (tempArray != nullptr)
-			delete tempArray;
     }
-
-
 
     //add element to the end
     void SmartDoubleArray::add(int value)
     {
-		if (size == capacity)
-		{
-			capacity *= 2;
-			tempArray = new int[capacity];
+        int* tempArray = nullptr;
+        if (size == capacity)
+        {
+            capacity *= 2;
+            tempArray = new int[capacity];
 
-			for (int i = 0; i < size; i++)
-			{
-				tempArray[i] = chiefPointer[i];
-			}
-			delete[] chiefPointer;
-			chiefPointer = new int[capacity];
+            for (int i = 0; i < size; i++)
+            {
+                tempArray[i] = chiefPointer[i];
+            }
+            delete[] chiefPointer;
+            chiefPointer = new int[capacity];
 
-			for (int i = 0; i < size; i++)
-			{
-				chiefPointer[i] = tempArray[i];
-			}
-		}
-		chiefPointer[size] = value;
-		size++;
+            for (int i = 0; i < size; i++)
+            {
+                chiefPointer[i] = tempArray[i];
+            }
+            delete[] tempArray;
+        }
+        chiefPointer[size] = value;
+        size++;
     }
 
     // insert element after 'index'
+    void SmartDoubleArray::insert(int value, int index)
+    {
+        if (!indexCheck(index))
+            return;
+        int* tempArray = nullptr;
+        bool needCleanUp = false;
+        
+        if (size == capacity)
+        {
+            capacity *= 2;
+            tempArray = new int[capacity];
+            for (int i = size; i >= 0; --i)
+            {
+                if (i > index + 1)
+                {
+                    tempArray[i] = chiefPointer[i - 1];
+                    continue;
+                }
+                if (i == index + 1)
+                {
+                    tempArray[index + 1] = value;
+                    continue;
+                }
+                tempArray[i] = chiefPointer[i];
+            }
+            chiefPointer = nullptr;
+            chiefPointer = tempArray;
+            delete[] tempArray;
+        }
+        else
+        {
+            for (int i = size; i > index + 1; --i)
+            {
+                chiefPointer[i] = chiefPointer[i - 1];
+            }
+            chiefPointer[index + 1] = value;
+        }
 
-	void SmartDoubleArray::insert(int value, int index)
-	{
-		if (!indexCheck(index))
-			return;
-		if (size == capacity)
-		{
-			capacity *= 2;
-			tempArray = new int[capacity];
-		}
-		for (int i = 0; i <= index; i++)
-		{
-			tempArray[i] = chiefPointer[i];
-		}
-		tempArray[index + 1] = value;
-		for (int i = index + 2; i <= size; i++)
-		{
-			tempArray[i] = chiefPointer[i-1];
-		}
-//		delete[] chiefPointer;
-		chiefPointer = new int[capacity];
-
-		for (int i = 0; i <= size; i++)
-		{
-			chiefPointer[i] = tempArray[i];
-		}
-
-
-		size++;
-
-
-
-
-
-	}
+        size++;
+    }
 
     //remove element at 'index'
     void SmartDoubleArray::remove(int index)
     {
+        if (!indexCheck(index))
+            return;
         size--;
-        //int *tempArray = new int[capacity];
-		int *tempArray = nullptr;
-		tempArray = new int[capacity];
+        int *tempArray = nullptr;
+        tempArray = new int[capacity];
 
         for (int i = 0; i < index; i++)
         {

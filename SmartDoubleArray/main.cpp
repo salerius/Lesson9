@@ -79,7 +79,12 @@ int main()
     a = a2.count(777);
     cout << "count of 777 in array : " << a << endl;
     cout << "count of 777 in array : " << a << endl;
-    cout << a2;
+	cout << a2 << endl;
+
+
+	a2.insert(55, 3);
+	
+	cout << a2<<endl;
 
 
     cin.get();
