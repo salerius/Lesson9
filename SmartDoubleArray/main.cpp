@@ -14,7 +14,10 @@ int main()
     a2.add(731);
     a2.add(1231);
     a2.add(1);
-    a2.add(3);
+	cout << a2 << endl;
+	a2.insert(777, 2);
+	cout << a2 << endl;
+	a2.add(3);
     a2.add(44);
     a2.add(55);
 

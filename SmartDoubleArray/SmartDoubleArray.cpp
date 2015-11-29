@@ -63,18 +63,17 @@ namespace MyArray
                 chiefPointer = tempArray;
         }
         else
-        {
-            int outVariable;
-            int innVariable = value;
-            for (int i = index + 1; i <= size; ++i)
-            {
-                outVariable = chiefPointer[i];
-                chiefPointer[i] = value;
-                value = outVariable;
-            }
-            chiefPointer[index + 2] = innVariable;
-        }
-
+		{
+			int outVariable;
+			int inVariable = value;
+			for (int i = index + 1; i < size; ++i)
+			{
+				outVariable = chiefPointer[i];
+				chiefPointer[i] = inVariable;
+				inVariable = outVariable;
+			}
+			chiefPointer[size] = inVariable;
+		}
         size++;
     }
 
