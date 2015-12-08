@@ -84,9 +84,7 @@ namespace MyArray
     {
         if (!indexCheck(index))
             return;
-        size--;
-
-        if ((size != 0) && (size < capacity / 2))
+        if ((size != 0) && (size <= capacity / 2))
         {
             capacity /= 2;
             int *tempArray = new int[capacity];
@@ -97,12 +95,12 @@ namespace MyArray
             }
             for (int i = index; i < size; i++)
             {
-                tempArray[i] = chiefPointer[i + 1];
+                tempArray[i] = chiefPointer[i];
             }
             delete[] chiefPointer;
             chiefPointer = tempArray;
         }
-
+        size--;
         for (int i = index; i < size; i++)
         {
             chiefPointer[i] = chiefPointer[i+1];
